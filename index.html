@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Glassy Website</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      font-family: Arial, sans-serif;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 40px;
+      text-align: center;
+      color: white;
+      width: 300px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      border-radius: 20px;
+      border: none;
+      background: white;
+      color: #764ba2;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #eee;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <h2>Hello NAVEEN 👋</h2>
+    <p>This is a simple glassy website.</p>
+    <button onclick="alert('Welcome!')">Click Me</button>
+  </div>
+
+</body>
+</html>
