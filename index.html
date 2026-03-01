@@ -3,73 +3,114 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Welcome | Kerala Experience</title>
+<title>Kerala Experience</title>
 
 <style>
 
+/* ---------- RESET ---------- */
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family: Arial, Helvetica, sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-/* Kerala Background */
+html{
+scroll-behavior:smooth;
+}
+
+/* ---------- BODY ---------- */
 body{
-    height:100vh;
-    background:url("https://images.unsplash.com/photo-1593693397690-362cb9666fc2") no-repeat center/cover;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+height:100vh;
+background:url("https://images.unsplash.com/photo-1593693397690-362cb9666fc2") center/cover no-repeat;
+display:flex;
+justify-content:center;
+align-items:center;
+transition:0.6s ease;
 }
 
-/* Glass Card */
+/* DARK MODE */
+body.dark{
+filter:brightness(0.7);
+}
+
+/* ---------- GLASS CARD ---------- */
 .glass{
-    width:420px;
-    padding:40px;
-    text-align:center;
-    border-radius:20px;
+width:420px;
+padding:45px;
+text-align:center;
+border-radius:25px;
 
-    background: rgba(255,255,255,0.15);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
+background:rgba(255,255,255,0.18);
+backdrop-filter:blur(18px);
+border:1px solid rgba(255,255,255,0.3);
 
-    border:1px solid rgba(255,255,255,0.3);
-    box-shadow:0 8px 32px rgba(0,0,0,0.25);
-    color:white;
+box-shadow:0 10px 40px rgba(0,0,0,0.3);
+color:white;
+
+animation:fadeIn 1.2s ease;
 }
 
-/* Title */
-.glass h1{
-    font-size:32px;
-    margin-bottom:15px;
+/* Animation */
+@keyframes fadeIn{
+from{
+opacity:0;
+transform:translateY(40px) scale(0.95);
+}
+to{
+opacity:1;
+transform:translateY(0) scale(1);
+}
 }
 
-.glass p{
-    font-size:16px;
-    margin-bottom:30px;
-    opacity:0.9;
+h1{
+margin-bottom:15px;
+font-size:34px;
 }
 
-/* Button */
+p{
+opacity:0.9;
+margin-bottom:30px;
+}
+
+/* BUTTON */
 .enter-btn{
-    padding:12px 28px;
-    border:none;
-    border-radius:30px;
-    font-size:16px;
-    cursor:pointer;
+padding:12px 28px;
+border-radius:30px;
+border:none;
+cursor:pointer;
+font-size:16px;
 
-    background:rgba(255,255,255,0.25);
-    color:white;
-    backdrop-filter: blur(10px);
-
-    transition:0.3s;
+background:rgba(255,255,255,0.25);
+color:white;
+transition:0.35s;
 }
 
 .enter-btn:hover{
-    background:white;
-    color:black;
-    transform:scale(1.05);
+background:white;
+color:black;
+transform:scale(1.08);
+}
+
+/* DARK TOGGLE */
+.toggle{
+position:absolute;
+top:25px;
+right:30px;
+cursor:pointer;
+font-size:18px;
+color:white;
+background:rgba(255,255,255,0.2);
+padding:10px 15px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+}
+
+/* PAGE TRANSITION */
+.fade-out{
+opacity:0;
+transform:scale(1.05);
+transition:0.6s;
 }
 
 </style>
@@ -77,14 +118,32 @@ body{
 
 <body>
 
-<div class="glass">
-    <h1>Welcome to Kerala</h1>
-    <p>Experience nature, peace, and beauty through a modern digital journey.</p>
+<div class="toggle" onclick="toggleMode()">🌙</div>
 
-    <a href="main.html">
-        <button class="enter-btn">Enter Website</button>
-    </a>
+<div class="glass">
+<h1>Welcome to Kerala</h1>
+<p>Nature meets modern glass design.</p>
+
+<button class="enter-btn" onclick="enterSite()">Enter Website</button>
 </div>
+
+<script>
+
+/* Dark Mode */
+function toggleMode(){
+document.body.classList.toggle("dark");
+}
+
+/* Smooth Page Transition */
+function enterSite(){
+document.body.classList.add("fade-out");
+
+setTimeout(()=>{
+window.location.href="main.html";
+},600);
+}
+
+</script>
 
 </body>
 </html>
