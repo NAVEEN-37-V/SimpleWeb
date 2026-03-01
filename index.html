@@ -7,110 +7,104 @@
 
 <style>
 
-/* ---------- RESET ---------- */
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-}
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box;
+font-family:-apple-system,BlinkMacSystemFont,sans-serif;}
 
-html{
-scroll-behavior:smooth;
-}
-
-/* ---------- BODY ---------- */
 body{
 height:100vh;
-background:url("https://images.unsplash.com/photo-1593693397690-362cb9666fc2") center/cover no-repeat;
+overflow:hidden;
+background:url("https://images.unsplash.com/photo-1593693397690-362cb9666fc2")
+center/cover no-repeat;
+transition:1s ease;
+}
+
+/* LOADER */
+.loader{
+position:fixed;
+inset:0;
+background:#020617;
 display:flex;
 justify-content:center;
 align-items:center;
-transition:0.6s ease;
+color:white;
+font-size:22px;
+letter-spacing:3px;
+z-index:9999;
+animation:fadeLoader 2s forwards 1.8s;
 }
 
-/* DARK MODE */
-body.dark{
-filter:brightness(0.7);
+@keyframes fadeLoader{
+to{opacity:0;visibility:hidden;}
 }
 
-/* ---------- GLASS CARD ---------- */
+/* MIST EFFECT */
+body::after{
+content:"";
+position:absolute;
+inset:0;
+background:radial-gradient(circle at 30% 70%,
+rgba(255,255,255,0.15),transparent 60%);
+animation:mist 8s infinite alternate ease-in-out;
+}
+
+@keyframes mist{
+from{transform:translateX(-40px);}
+to{transform:translateX(40px);}
+}
+
+/* GLASS CARD */
 .glass{
-width:420px;
-padding:45px;
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:440px;
+padding:50px;
 text-align:center;
-border-radius:25px;
+border-radius:28px;
 
 background:rgba(255,255,255,0.18);
-backdrop-filter:blur(18px);
+backdrop-filter:blur(20px);
 border:1px solid rgba(255,255,255,0.3);
 
-box-shadow:0 10px 40px rgba(0,0,0,0.3);
 color:white;
-
-animation:fadeIn 1.2s ease;
+box-shadow:0 20px 60px rgba(0,0,0,.35);
+animation:appear 1.5s ease;
 }
 
-/* Animation */
-@keyframes fadeIn{
-from{
-opacity:0;
-transform:translateY(40px) scale(0.95);
-}
-to{
-opacity:1;
-transform:translateY(0) scale(1);
-}
+@keyframes appear{
+from{opacity:0;transform:translate(-50%,-40%) scale(.9);}
+to{opacity:1;transform:translate(-50%,-50%) scale(1);}
 }
 
-h1{
-margin-bottom:15px;
-font-size:34px;
-}
+h1{font-size:36px;margin-bottom:15px;}
+p{opacity:.9;margin-bottom:35px;}
 
-p{
-opacity:0.9;
-margin-bottom:30px;
-}
-
-/* BUTTON */
-.enter-btn{
-padding:12px 28px;
-border-radius:30px;
+/* BUTTON DEPTH */
+.enter{
+padding:14px 34px;
+border-radius:40px;
 border:none;
-cursor:pointer;
-font-size:16px;
-
-background:rgba(255,255,255,0.25);
+background:rgba(255,255,255,.25);
 color:white;
-transition:0.35s;
+cursor:pointer;
+transition:.35s;
 }
 
-.enter-btn:hover{
+.enter:hover{
+transform:translateY(-4px) scale(1.07);
 background:white;
 color:black;
-transform:scale(1.08);
+box-shadow:0 10px 30px rgba(0,0,0,.3);
 }
 
-/* DARK TOGGLE */
-.toggle{
-position:absolute;
-top:25px;
-right:30px;
-cursor:pointer;
-font-size:18px;
-color:white;
-background:rgba(255,255,255,0.2);
-padding:10px 15px;
-border-radius:20px;
-backdrop-filter:blur(10px);
-}
-
-/* PAGE TRANSITION */
-.fade-out{
+/* BLUR TRANSITION */
+.blur-out{
+filter:blur(12px);
 opacity:0;
-transform:scale(1.05);
-transition:0.6s;
+transform:scale(1.1);
+transition:1s;
 }
 
 </style>
@@ -118,31 +112,21 @@ transition:0.6s;
 
 <body>
 
-<div class="toggle" onclick="toggleMode()">🌙</div>
+<div class="loader">KERALA EXPERIENCE</div>
 
 <div class="glass">
 <h1>Welcome to Kerala</h1>
-<p>Nature meets modern glass design.</p>
-
-<button class="enter-btn" onclick="enterSite()">Enter Website</button>
+<p>A cinematic digital journey through nature.</p>
+<button class="enter" onclick="go()">Enter</button>
 </div>
 
 <script>
-
-/* Dark Mode */
-function toggleMode(){
-document.body.classList.toggle("dark");
-}
-
-/* Smooth Page Transition */
-function enterSite(){
-document.body.classList.add("fade-out");
-
+function go(){
+document.body.classList.add("blur-out");
 setTimeout(()=>{
-window.location.href="main.html";
-},600);
+window.location="main.html";
+},900);
 }
-
 </script>
 
 </body>
