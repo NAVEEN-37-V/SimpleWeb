@@ -3,31 +3,98 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Main Page</title>
+<title>Main Website</title>
 
 <style>
 
-body{
-    margin:0;
-    font-family:Arial;
-    background:#0f172a;
-    color:white;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:-apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-.container{
-    text-align:center;
+html{
+scroll-behavior:smooth;
+}
+
+/* BACKGROUND */
+body{
+background:linear-gradient(120deg,#0f172a,#020617);
+color:white;
+transition:0.5s;
+}
+
+/* DARK/LIGHT */
+body.light{
+background:#f1f5f9;
+color:black;
+}
+
+/* FLOATING GLASS NAVBAR */
+.navbar{
+position:fixed;
+top:20px;
+left:50%;
+transform:translateX(-50%);
+padding:12px 30px;
+
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(15px);
+border-radius:40px;
+border:1px solid rgba(255,255,255,0.2);
+
+display:flex;
+gap:25px;
+z-index:1000;
+}
+
+.navbar a{
+text-decoration:none;
+color:inherit;
+font-weight:500;
+transition:0.3s;
+}
+
+.navbar a:hover{
+opacity:0.6;
+}
+
+/* TOGGLE */
+.toggle{
+cursor:pointer;
+}
+
+/* SECTIONS */
+section{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
 }
 
 h1{
-    font-size:40px;
+font-size:48px;
+margin-bottom:15px;
 }
 
 p{
-    opacity:0.8;
+opacity:0.8;
+width:60%;
+}
+
+/* SMOOTH APPEAR */
+.fade{
+opacity:0;
+transform:translateY(40px);
+transition:1s;
+}
+
+.fade.show{
+opacity:1;
+transform:translateY(0);
 }
 
 </style>
@@ -35,10 +102,50 @@ p{
 
 <body>
 
-<div class="container">
-    <h1>Main Website</h1>
-    <p>You successfully entered the main page 🚀</p>
+<!-- FLOATING NAVBAR -->
+<div class="navbar">
+<a href="#home">Home</a>
+<a href="#about">About</a>
+<a href="#contact">Contact</a>
+<div class="toggle" onclick="toggleTheme()">☀️</div>
 </div>
+
+<section id="home" class="fade">
+<h1>Main Website</h1>
+<p>Apple-level smooth scrolling with glass UI.</p>
+</section>
+
+<section id="about" class="fade">
+<h1>About Kerala</h1>
+<p>Known as God's Own Country, Kerala blends greenery, culture, and calm landscapes.</p>
+</section>
+
+<section id="contact" class="fade">
+<h1>Contact</h1>
+<p>Build modern experiences with glassmorphism design.</p>
+</section>
+
+<script>
+
+/* DARK LIGHT SWITCH */
+function toggleTheme(){
+document.body.classList.toggle("light");
+}
+
+/* SCROLL ANIMATION */
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add("show");
+}
+});
+});
+
+document.querySelectorAll(".fade").forEach(el=>{
+observer.observe(el);
+});
+
+</script>
 
 </body>
 </html>
