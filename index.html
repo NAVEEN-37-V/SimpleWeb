@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kerala Experience</title>
+<title>Kerala Sunrise</title>
 
 <style>
 
-/* RESET */
+/* ---------- RESET ---------- */
 *{
 margin:0;
 padding:0;
@@ -15,171 +15,81 @@ box-sizing:border-box;
 font-family:-apple-system,BlinkMacSystemFont,sans-serif;
 }
 
+/* ---------- BACKGROUND ---------- */
 body{
-background:#0b0f14;
-color:white;
-overflow-x:hidden;
-}
-
-/* NAVBAR */
-.nav{
-position:fixed;
-top:25px;
-left:50%;
-transform:translateX(-50%);
-padding:12px 28px;
-border-radius:40px;
-
-background:rgba(255,255,255,0.08);
-backdrop-filter:blur(12px);
-
-display:flex;
-gap:30px;
-z-index:1000;
-}
-
-/* HERO */
-.hero{
 height:100vh;
 display:flex;
-flex-direction:column;
 justify-content:center;
 align-items:center;
-text-align:center;
+overflow:hidden;
 
+/* Kerala Sunrise 4K */
 background:
-linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.6)),
-url("https://images.unsplash.com/photo-1602216056096-3b40cc0c9944")
+linear-gradient(rgba(0,0,0,.35),rgba(0,0,0,.45)),
+url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e")
 center/cover no-repeat;
 }
 
+/* ---------- GLASS ISLAND ---------- */
+.island{
+padding:60px 80px;
+border-radius:30px;
+text-align:center;
+cursor:pointer;
+
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(18px);
+-webkit-backdrop-filter:blur(18px);
+border:1px solid rgba(255,255,255,0.35);
+
+color:white;
+
+transition:all .4s ease;
+box-shadow:0 20px 60px rgba(0,0,0,.35);
+}
+
+/* Hover = cursor enters island */
+.island:hover{
+transform:translateY(-8px) scale(1.03);
+background:rgba(255,255,255,0.22);
+box-shadow:0 30px 80px rgba(0,0,0,.45);
+}
+
+/* TITLE */
 h1{
-font-size:56px;
+font-size:42px;
 font-weight:600;
 letter-spacing:-1px;
 margin-bottom:15px;
 }
 
+/* TEXT */
 p{
-font-size:18px;
-opacity:.75;
-max-width:600px;
+opacity:.85;
+margin-bottom:35px;
 }
 
-/* CARDS */
-.cards{
-display:flex;
-gap:20px;
-margin-top:40px;
-}
-
-.card{
-padding:25px 35px;
-border-radius:16px;
-background:rgba(255,255,255,0.06);
-transition:.3s;
-}
-
-.card:hover{
-background:rgba(255,255,255,0.12);
-transform:translateY(-6px);
-}
-
-/* SECTIONS */
-section{
-min-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-padding:40px;
-}/* LOADER */
-.loader{
-position:fixed;
-inset:0;
-background:#020617;
-display:flex;
-justify-content:center;
-align-items:center;
-color:white;
-font-size:22px;
-letter-spacing:3px;
-z-index:9999;
-animation:fadeLoader 2s forwards 1.8s;
-}
-
-@keyframes fadeLoader{
-to{opacity:0;visibility:hidden;}
-}
-
-/* MIST EFFECT */
-body::after{
-content:"";
-position:absolute;
-inset:0;
-background:radial-gradient(circle at 30% 70%,
-rgba(255,255,255,0.15),transparent 60%);
-animation:mist 8s infinite alternate ease-in-out;
-}
-
-@keyframes mist{
-from{transform:translateX(-40px);}
-to{transform:translateX(40px);}
-}
-
-/* GLASS CARD */
-.glass{
-position:absolute;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-width:440px;
-padding:50px;
-text-align:center;
-border-radius:28px;
-
-background:rgba(255,255,255,0.18);
-backdrop-filter:blur(20px);
-border:1px solid rgba(255,255,255,0.3);
-
-color:white;
-box-shadow:0 20px 60px rgba(0,0,0,.35);
-animation:appear 1.5s ease;
-}
-
-@keyframes appear{
-from{opacity:0;transform:translate(-50%,-40%) scale(.9);}
-to{opacity:1;transform:translate(-50%,-50%) scale(1);}
-}
-
-h1{font-size:36px;margin-bottom:15px;}
-p{opacity:.9;margin-bottom:35px;}
-
-/* BUTTON DEPTH */
+/* ENTER BUTTON STYLE */
 .enter{
-padding:14px 34px;
+display:inline-block;
+padding:14px 36px;
 border-radius:40px;
-border:none;
 background:rgba(255,255,255,.25);
-color:white;
-cursor:pointer;
 transition:.35s;
 }
 
+/* Cursor enters button */
 .enter:hover{
-transform:translateY(-4px) scale(1.07);
 background:white;
 color:black;
-box-shadow:0 10px 30px rgba(0,0,0,.3);
+transform:scale(1.08);
 }
 
-/* BLUR TRANSITION */
-.blur-out{
-filter:blur(12px);
+/* PAGE TRANSITION */
+.fade-out{
 opacity:0;
 transform:scale(1.1);
-transition:1s;
+transition:0.8s ease;
 }
 
 </style>
@@ -187,21 +97,26 @@ transition:1s;
 
 <body>
 
-<div class="loader">KERALA EXPERIENCE</div>
+<!-- WHOLE ISLAND CLICKABLE -->
+<div class="island" onclick="enterSite()">
 
-<div class="glass">
-<h1>Welcome to Kerala</h1>
-<p>A cinematic digital journey through nature.</p>
-<button class="enter" onclick="go()">Enter</button>
+<h1>Kerala</h1>
+<p>Begin your journey through God's Own Country</p>
+
+<div class="enter">Enter</div>
+
 </div>
 
 <script>
-function go(){
-document.body.classList.add("blur-out");
+
+function enterSite(){
+document.body.classList.add("fade-out");
+
 setTimeout(()=>{
-window.location="main.html";
-},900);
+window.location.href="main.html";
+},700);
 }
+
 </script>
 
 </body>
